@@ -24,14 +24,14 @@ public class Olx {
       driver.get(BaseUrl);
     }
 
-    @Test
+    @Test(priority = 0)
     public void MatchURLandTitle(){
         String ActualURL = driver.getCurrentUrl();
         Assert.assertEquals(ActualURL,Expectedurl);
         String Actualtitle = driver.getTitle();
         Assert.assertEquals(Actualtitle,Expectedtitle);
     }
-    @Test
+    @Test(priority = 1)
     public void  GlobalSearch(){
         String ActualSearchText = "Iphone X in India";
         driver.findElement(By.xpath(".//input[@data-aut-id='searchBox']")).sendKeys("Iphone X");
@@ -40,9 +40,8 @@ public class Olx {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(".//h1[@class='PePdS']")));
         String SearchText = driver.findElement(By.xpath(".//h1[@class='PePdS']")).getText();
         Assert.assertEquals(SearchText,ActualSearchText);
-
-
     }
+
     @AfterTest
     public void CloseBrowser(){
         driver.manage().deleteAllCookies();
