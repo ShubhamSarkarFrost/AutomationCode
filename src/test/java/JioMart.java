@@ -28,7 +28,7 @@ public class JioMart {
             driver.manage().window().maximize();
         }
 
-        @Test(priority = 0)
+        @Test
         public void matchurlandtitle(){
             String ActualUrl = driver.getCurrentUrl();
             Assert.assertEquals(Expectedurl,ActualUrl);
@@ -36,7 +36,7 @@ public class JioMart {
             Assert.assertEquals(Expectedtitle,ActualTitle);
         }
 
-        @Test(priority = 1)
+        @Test
         public void SearchData() throws IOException {
             ExcelData.ExportData(Filepath,Sheetname,cellvalue);
         }
