@@ -41,12 +41,20 @@ public class alaskaAirlines {
      }
 
      @Test(priority = 2)
-     public void searchForHotel() throws InterruptedException {
+     public void searchForHotel() throws Exception {
           WebElement bookHotel = driver.findElement(By.xpath("//li[@data-testid='MegaMenuDesktopNavItem']//a[text()='Book']"));
-          WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+          WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
           wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@data-testid='MegaMenuDesktopNavItem']//a[text()='Book']")));
           bookHotel.click();
           Thread.sleep(10000);
+          screenshotTaker.takeSnapshot(driver,"./screenshots/BookHotel.png");
+          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@data-omniture-tag='nav:book-hotels']")));
+          WebElement hotels = driver.findElement(By.xpath(".//a[@data-omniture-tag='nav:book-hotels']"));
+          hotels.click();
+          WebElement checkHotel = driver.findElement(By.xpath("//input[@placeholder='Enter a city, airport, or landmark']"));
+          wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Enter a city, airport, or landmark']")));
+          screenshotTaker.takeSnapshot(driver,"./screenshots/HotelFind.png");
+          checkHotel.click();
      }
 
      @AfterTest
